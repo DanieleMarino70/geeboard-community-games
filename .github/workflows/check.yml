@@ -1,0 +1,43 @@
+name: Check manifests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# The Geeboard release whose checker this repository follows. A manifest has to pass the rules of the panel
+# that will read it, so this moves when a Geeboard release changes them, in a pull request of its own.
+env:
+  GEEBOARD_REPO: DanieleMarino70/Geeboard
+  GEEBOARD_REF: v0.6.0
+
+permissions:
+  contents: read
+
+jobs:
+  manifests:
+    name: Manifests pass Geeboard's checker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.GEEBOARD_REPO }}
+          ref: ${{ env.GEEBOARD_REF }}
+          path: geeboard
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: geeboard/web/package-lock.json
+
+      # The checker is plain TypeScript run by tsx: nothing of Geeboard has to be built, and the database
+      # client its install script would generate is not used.
+      - run: npm ci --ignore-scripts
+        working-directory: geeboard/web
+
+      - run: node scripts/check.mjs
+        env:
+          GEEBOARD_DIR: ${{ github.workspace }}/geeboard

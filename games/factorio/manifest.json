@@ -1,0 +1,87 @@
+{
+  "manifest": 1,
+  "id": "community-factorio",
+  "name": "Factorio",
+  "family": "Factorio",
+  "art": "FAC-\nTORIO",
+  "blurb": "Factory automation. The headless server from the factoriotools image, a new map on first start.",
+
+  "portBase": 34197,
+  "portSpan": 100,
+  "ports": [
+    { "id": "game", "label": "Game", "offset": 0, "container": 34197, "protocol": "udp", "primary": true }
+  ],
+
+  "defaults": { "memoryGb": 2, "cpuLimit": 150, "diskGb": 10, "playersMax": 16 },
+  "limits": { "memoryGb": [1, 8], "cpuLimit": [50, 400], "diskGb": [5, 60] },
+  "requirements": {
+    "memoryGbMin": 1,
+    "cpuPctMin": 50,
+    "diskGbMin": 5,
+    "os": ["linux"],
+    "arch": ["x64"],
+    "capabilities": ["docker"]
+  },
+
+  "install": { "kind": "image" },
+  "dataPath": "/factorio",
+
+  "config": [
+    {
+      "key": "preset",
+      "label": "Map preset",
+      "type": "enum",
+      "target": { "kind": "env", "name": "PRESET" },
+      "default": "default",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "rich-resources", "label": "Rich resources" },
+        { "value": "rail-world", "label": "Rail world" },
+        { "value": "death-world", "label": "Death world" }
+      ],
+      "group": "World",
+      "help": "Only applies when the map is made, on the first start. An existing map keeps the settings it was made with.",
+      "restartRequired": true
+    }
+  ],
+
+  "health": {
+    "probes": [{ "kind": "log", "pattern": "Hosting game at" }],
+    "bootGraceSeconds": 180,
+    "readyPattern": "Hosting game at",
+    "crashPattern": "Factorio crashed"
+  },
+
+  "console": {
+    "saveCommand": "/server-save",
+    "examples": ["/players", "/server-save", "/time", "/seed"],
+    "players": {
+      "join": "\\[JOIN\\] (?<name>.{1,40}) joined the game$",
+      "leave": "\\[LEAVE\\] (?<name>.{1,40}) left the game$"
+    }
+  },
+
+  "versions": [
+    {
+      "id": "stable-2-0-77",
+      "line": "stable",
+      "label": "Factorio 2.0.77",
+      "upstream": "2.0.77",
+      "image": "docker.io/factoriotools/factorio:stable@sha256:b4951bbde08f83dbe578b9276eeb350d19ce7263b8427f0acb77dbfe70f0e321",
+      "note": "The image's stable tag, as it was on 2026-10-03",
+      "released": "2026-09-22",
+      "channel": "stable",
+      "recommended": true
+    }
+  ],
+
+  "templates": [
+    {
+      "id": "default",
+      "name": "Default map",
+      "blurb": "A new map with the game's own settings.",
+      "summary": "Default preset, 16 slots",
+      "config": { "preset": "default" }
+    }
+  ]
+}

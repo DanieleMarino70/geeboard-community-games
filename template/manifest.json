@@ -1,0 +1,139 @@
+{
+  "manifest": 1,
+  "id": "community-example",
+  "name": "Example game",
+  "family": "Example",
+  "art": "EX-\nAMPLE",
+  "blurb": "Replace this: one sentence on what the game is and which image runs it.",
+  "portBase": 34197,
+  "portSpan": 100,
+  "ports": [
+    {
+      "id": "game",
+      "label": "Game",
+      "offset": 0,
+      "container": 34197,
+      "protocol": "udp",
+      "primary": true
+    }
+  ],
+  "defaults": {
+    "memoryGb": 2,
+    "cpuLimit": 150,
+    "diskGb": 10,
+    "playersMax": 16
+  },
+  "limits": {
+    "memoryGb": [
+      1,
+      8
+    ],
+    "cpuLimit": [
+      50,
+      400
+    ],
+    "diskGb": [
+      5,
+      60
+    ]
+  },
+  "requirements": {
+    "memoryGbMin": 1,
+    "cpuPctMin": 50,
+    "diskGbMin": 5,
+    "os": [
+      "linux"
+    ],
+    "arch": [
+      "x64"
+    ],
+    "capabilities": [
+      "docker"
+    ]
+  },
+  "install": {
+    "kind": "image"
+  },
+  "dataPath": "/factorio",
+  "config": [
+    {
+      "key": "preset",
+      "label": "Map preset",
+      "type": "enum",
+      "target": {
+        "kind": "env",
+        "name": "PRESET"
+      },
+      "default": "default",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "rich-resources",
+          "label": "Rich resources"
+        },
+        {
+          "value": "rail-world",
+          "label": "Rail world"
+        },
+        {
+          "value": "death-world",
+          "label": "Death world"
+        }
+      ],
+      "group": "World",
+      "help": "Only applies when the map is made, on the first start. An existing map keeps the settings it was made with.",
+      "restartRequired": true
+    }
+  ],
+  "health": {
+    "probes": [
+      {
+        "kind": "log",
+        "pattern": "Hosting game at"
+      }
+    ],
+    "bootGraceSeconds": 180,
+    "readyPattern": "Hosting game at",
+    "crashPattern": "Factorio crashed"
+  },
+  "console": {
+    "saveCommand": "/server-save",
+    "examples": [
+      "/players",
+      "/server-save",
+      "/time",
+      "/seed"
+    ],
+    "players": {
+      "join": "\\[JOIN\\] (?<name>.{1,40}) joined the game$",
+      "leave": "\\[LEAVE\\] (?<name>.{1,40}) left the game$"
+    }
+  },
+  "versions": [
+    {
+      "id": "example-1-0",
+      "line": "stable",
+      "label": "Example 1.0",
+      "upstream": "1.0",
+      "image": "docker.io/owner/image:tag@sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "note": "Where the image comes from and what it is. The tag is for reading; the digest is what runs.",
+      "released": "2026-01-01",
+      "channel": "stable",
+      "recommended": true
+    }
+  ],
+  "templates": [
+    {
+      "id": "default",
+      "name": "Default map",
+      "blurb": "A new map with the game's own settings.",
+      "summary": "Default preset, 16 slots",
+      "config": {
+        "preset": "default"
+      }
+    }
+  ]
+}
