@@ -5,11 +5,14 @@ on:
     branches: [main]
   pull_request:
 
-# The Geeboard release whose checker this repository follows. A manifest has to pass the rules of the panel
+# The Geeboard version whose checker this repository follows. A manifest has to pass the rules of the panel
 # that will read it, so this moves when a Geeboard release changes them, in a pull request of its own.
+#
+# v0.8.0 is the first tag with the checker (`npm run manifest:check`), which was written after v0.6.0 was
+# tagged. Pinned to a tag so that a change to Geeboard's rules cannot turn this repository red on its own.
 env:
   GEEBOARD_REPO: DanieleMarino70/Geeboard
-  GEEBOARD_REF: v0.6.0
+  GEEBOARD_REF: v0.8.0
 
 permissions:
   contents: read

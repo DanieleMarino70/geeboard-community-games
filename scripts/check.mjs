@@ -19,7 +19,7 @@ const checker = path.join(web, "scripts", "check-manifest.mts");
 
 if (!existsSync(checker)) {
   console.error(`Geeboard's checker is not at ${checker}.`);
-  console.error("Put a checkout of Geeboard (0.6.0 or later) next to this repository, or set GEEBOARD_DIR to it,");
+  console.error("Put a checkout of Geeboard v0.8.0 or later (the checker is newer than v0.6.0) next to this repository, or set GEEBOARD_DIR to it,");
   console.error("and run `npm install` once in its web folder.");
   process.exit(2);
 }

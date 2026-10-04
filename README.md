@@ -44,8 +44,9 @@ In short: an existing public image, its digest, a manifest, the checker, and a r
 
 ## Check what is here
 
-The checker is Geeboard's own, run on files; it needs a checkout of Geeboard next to this one,
-or `GEEBOARD_DIR` pointing at it, with `npm install` run once in its `web` folder:
+The checker is Geeboard's own, run on files. It needs a checkout of Geeboard v0.8.0 or later next to this
+one — the checker came after the v0.6.0 tag — or `GEEBOARD_DIR` pointing at it, with `npm install` run once
+in its `web` folder:
 
 ```bash
 node scripts/check.mjs
