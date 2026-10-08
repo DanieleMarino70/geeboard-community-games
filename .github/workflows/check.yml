@@ -10,10 +10,10 @@ on:
 #
 # v0.8.1 is the first published release with the checker (`npm run manifest:check`), which was written after
 # v0.6.0 was tagged; v0.8.0 has it too, and was tagged but never released. Pinned to a tag so that a change to
-# Geeboard's rules cannot turn this repository red on its own. It follows the latest release; both manifests here pass v0.9.0's checker.
+# Geeboard's rules cannot turn this repository red on its own. It follows the latest release; both manifests here pass v0.9.5's checker.
 env:
   GEEBOARD_REPO: DanieleMarino70/Geeboard
-  GEEBOARD_REF: v0.9.0
+  GEEBOARD_REF: v0.9.5
 
 permissions:
   contents: read
