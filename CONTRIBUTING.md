@@ -46,6 +46,13 @@ The ones that need care:
   game's real output, not from its documentation.
 - **`console`** — how the game is stopped and saved from its console, if it can be, and the lines that say a
   player joined or left. If you have not seen a real client join, say so in the README.
+- **`poster`** — the game's Steam **store** app id, `{ "steam": <id> }`: the number in the address of its store
+  page, `store.steampowered.com/app/<id>`, not the dedicated server's app id. Replace the template's `1`. Check that
+  `https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/<id>/library_600x900_2x.jpg` (or
+  `library_600x900.jpg`) is the game's poster, and say in the README that you did. A game that is not on Steam
+  leaves the field out: a manifest cannot name an address, and the panel draws a cover from `art` instead.
+  Beside the id, `"focusY"` (0 to 1, 0 when left out) says how far down the poster the small square mark beside a
+  server's name is cut: look where the game's name is on the poster. Factorio's is in the middle, so it says `0.5`.
 
 ## 4. Check it
 
