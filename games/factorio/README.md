@@ -11,6 +11,7 @@ Factorio's headless server, from the `factoriotools/factorio` image
 | Digest taken | 2026-10-03 |
 | Port | 34197/udp, the game |
 | Folder | `/factorio`: saves, configuration, mods |
+| Poster | Steam store page `427520` ([store.steampowered.com/app/427520](https://store.steampowered.com/app/427520)); its library poster is on Steam's CDN at 600 × 900 and 300 × 450 (checked 2026-10-13). The name sits in the middle, so the square mark is cut there (`focusY` 0.5). Shown by Geeboard 0.12.1 and later |
 
 ## What was run
 

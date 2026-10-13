@@ -4,6 +4,9 @@
   "name": "Example game",
   "family": "Example",
   "art": "EX-\nAMPLE",
+  "poster": {
+    "steam": 1
+  },
   "blurb": "Replace this: one sentence on what the game is and which image runs it.",
   "portBase": 34197,
   "portSpan": 100,

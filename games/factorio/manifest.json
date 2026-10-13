@@ -4,6 +4,7 @@
   "name": "Factorio",
   "family": "Factorio",
   "art": "FAC-\nTORIO",
+  "poster": { "steam": 427520, "focusY": 0.5 },
   "blurb": "Factory automation. The headless server from the factoriotools image, a new map on first start.",
 
   "portBase": 34197,

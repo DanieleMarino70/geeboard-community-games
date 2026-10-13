@@ -34,8 +34,13 @@ a new manifest with a new digest, and it is a new revision for an owner to read.
 | --- | --- | --- | --- |
 | [Factorio](games/factorio/) | `docker.io/factoriotools/factorio` | run through a panel to the ready line, console, backup, a crash; no client joined | `community-factorio` |
 
-`template/manifest.json` is a manifest to start from. It passes the checker with a
-placeholder image, so it cannot be approved by mistake: its digest is all zeros.
+`template/manifest.json` is a manifest to start from. It passes the checker with
+placeholders, so it cannot be approved by mistake: its digest is all zeros, and its
+poster is Steam app `1`, which is no game's.
+
+A manifest here names its game's poster by its Steam store app id, `"poster": { "steam": … }`,
+which Geeboard 0.12.1 and later fetch and show on their Games pages. A panel of 0.12.0 or
+older refuses a manifest that has the field: on one, take the line out before pasting.
 
 ## Add one
 
@@ -44,8 +49,8 @@ In short: an existing public image, its digest, a manifest, the checker, and a r
 
 ## Check what is here
 
-The checker is Geeboard's own, run on files. It needs a checkout of Geeboard v0.8.0 or later next to this
-one — the checker came after the v0.6.0 tag — or `GEEBOARD_DIR` pointing at it, with `npm install` run once
+The checker is Geeboard's own, run on files. It needs a checkout of Geeboard v0.12.1 or later next to this
+one — the first whose checker reads a `poster` — or `GEEBOARD_DIR` pointing at it, with `npm install` run once
 in its `web` folder:
 
 ```bash
